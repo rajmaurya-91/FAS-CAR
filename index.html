@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="onlyfascarlogo.png">
+    <title>FAS-CAR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Copperplate', 'Papyrus', 'fantasy';
+        }
+        header {
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid black;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+        .logo h1 {
+            font-family: 'Copperplate', 'Papyrus', 'fantasy';
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: blue;
+        }
+        .hero {
+            height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image:url("fascar-horizon-centered.png");
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-content p {
+            margin-top: 180px;
+            font-size: 20px;
+            letter-spacing: 5px;
+        }
+        .hero-button {
+            display: inline-block;
+            margin-top: 200px;
+            padding: 15px 40px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .hero-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .brand-section {
+            padding: 80px 50px;
+        }
+        .brand-title {
+            font-family: 'Copperplate', 'Papyrus', 'fantasy';
+            font-size: 55px;
+            letter-spacing: 4px;
+            font-style: italic;
+            border-left: 7px solid blue;
+            padding-left: 18px;
+            margin-bottom: 40px;
+        }
+        .car-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap: 25px;
+        }
+        .car-card {
+            background-color: black;
+            border: 1px solid white;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .car-card:hover {
+            transform: translateY(-8px);
+            border-color: blue;
+        }
+        .car-card > img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+        .car-info {
+            padding: 25px;
+        }
+        .car-name {
+           font-family: 'Copperplate', 'Papyrus', 'fantasy';
+            font-size: 34px;
+            font-weight: 900;
+            display: inline-block;
+            transform: skewX(-5deg);
+            letter-spacing: 1px;
+            color:white;
+        }
+        .price {
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: blue;
+        }
+        .specs {
+            list-style: none;
+            margin-top: 20px;
+            color: white;
+        }
+        .specs li {
+            padding: 9px 0;
+            border-bottom: 1px solid white;
+        }
+        .updates {
+            padding: 100px 30px;
+            text-align: center;
+            background-color: black;
+        }
+        .updates h2 {
+            font-family:'Copperplate','Papyrus','fantasy';
+            font-size: 50px;
+            letter-spacing: 3px;
+        }
+        .updates p {
+            margin-top: 15px;
+            color: white;
+            font-size: 17px;
+        }
+        .update-form {
+            max-width: 600px;
+            margin: 35px auto 0;
+            display: flex;
+        }
+        .update-form input {
+            flex: 1;
+            padding: 16px;
+            background-color: black;
+            border: 1px solid black;
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+        .update-form button {
+            padding: 16px 30px;
+            background-color: blue;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .update-form button:hover {
+            background-color: white;
+            color: black;
+        }
+        footer {
+            padding: 60px 40px 30px;
+            background-color: black;
+            text-align: center;
+        }
+        footer h2 {
+            font-family:'Copperplate','Papyrus','fantasy';
+            font-size: 30px;
+        }
+        .stay-tuned {
+            margin-top: 15px;
+            color: lightslategrey;
+        }
+        .social {
+            margin-top: 25px;
+        }
+        .social a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .social a:hover {
+            color: blue;
+        }
+        .footer-buttons {
+            margin-top: 45px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .footer-buttons a {
+            padding: 11px 20px;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+        .footer-buttons a:hover {
+            background-color: white;
+            color: black;
+            border-color: white;
+        }
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid black;
+            color: white;
+            font-size: 13px;
+        }
+        @media (max-width: 900px) {
+            header {
+                padding: 0 20px;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            .car-container {
+                grid-template-columns: 1fr;
+            }
+            .brand-section {
+                padding: 60px 25px;
+            }
+            .hero-content h2 {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="onlyfascarlogo.png"
+                 alt="FAS-CAR Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#cars">ABOUT</a></li>
+                <li><a href="#brands">NEWS</a></li>
+                <li><a href="#updates">SUPPORT</a></li>
+            </ul>
+        </nav>
+    </header>
+<section class="hero" id="home">
+        <div class="hero-content">
+            <p> THE WORLD OF PERFORMANCE CARS</p>
+            <a href="#cars" class="hero-button">EXPLORE CARS</a>
+        </div>
+</section>
+<section class="brand-section" id="cars">
+    <h2 class="brand-title">BMW</h2>
+    <div class="car-container">
+        <div class="car-card">
+            <img src="https://i.pinimg.com/736x/25/24/39/252439604a60f50b0089f279916134f8.jpg" alt="BMW M5 CS" >
+            <div class="car-info">
+                <h3 class="car-name">BMW M5 CS</h3>
+                <div class="price"> ₹2.50 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 4.4L Twin-Turbo V8</li>
+                    <li>Power: 635 HP</li>
+                    <li>0-100 km/h: 3.0 sec</li>
+                    <li>Top Speed: 250 km/h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://imgs.search.brave.com/sd7R9MzlRFpwL0k5ZgnWkneV29z2fQCvKnQ51p-Q4ig/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDk2NTk3/MjUuanBn" alt="BMW M4">
+            <div class="car-info">
+                <h3 class="car-name">BMW M4</h3>
+                <div class="price">₹1.48 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 3.0L Twin-Turbo Inline-6</li>
+                    <li>Power: 503 HP</li>
+                    <li>0-100 km/h: 3.9 sec</li>
+                    <li>Top Speed: 305 km/h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://i.pinimg.com/1200x/6e/c2/b2/6ec2b269a5beed1c353e20a109d9bae1.jpg" alt="BMW M8">
+            <div class="car-info">
+                <h3 class="car-name">BMW M8</h3>
+                <div class="price"> ₹2.44 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 4.4L Twin-Turbo V8</li>
+                    <li>Power: 617 HP</li>
+                    <li>0-100 km/h: 3.2 sec</li>
+                    <li>Top Speed: 305 km/h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="brand-section" id="brands">
+    <h2 class="brand-title">PORSCHE</h2>
+        <div class="car-container">
+            <div class="car-card">
+                <img src="https://imgs.search.brave.com/c-n8J5IPOZyOAnNMPi9CH-Re8NdkEB3cdG_q2pmTNGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci8xMDIy/LzY2OC9IRC13YWxs/cGFwZXItcG9yc2No/ZS05MTEtZ3QzLW5p/Z2h0LTIwMTgtY2Fy/cy1oZWFkbGlnaHRz/LXN1cGVyY2Fycy1n/ZXJtYW4tY2Fycy1w/b3JzY2hlLXRodW1i/bmFpbC5qcGc" alt="Porsche 911 GT3">
+                <div class="car-info">
+                    <h3 class="car-name">Porsche 911 GT3</h3>
+                    <div class="price">₹3.50 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 4.0L Naturally Aspirated Flat-6</li>
+                        <li>Power: 510 HP</li>
+                        <li>0-100 km/h: 3.4 sec</li>
+                        <li>Top Speed: 311 km/h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="porschetaycanturbo.png" alt="Porsche Taycan Turbo S">
+                <div class="car-info">
+                    <h3 class="car-name">Porsche Taycan Turbo S</h3>
+                    <div class="price">₹2.80 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: Dual Electric Motors</li>
+                        <li>Power: 938 HP</li>
+                        <li>0-100 km/h: 2.4 sec</li>
+                        <li>Top Speed: 260 km/h</li>
+                    </ul>
+                </div>
+            </div>
+        <div class="car-card">
+            <img src="https://imgs.search.brave.com/MDdtEO2ZENJReNLgb_KWy7TjhqySPUEoBfv4fQqKaEo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93MC5w/ZWFrcHguY29tL3dh/bGxwYXBlci85MDAv/OTk5L0hELXdhbGxw/YXBlci1wb3JzY2hl/LWNhcnJlcmEtZ3Qt/bmlnaHQtcmVhci12/aWV3LTIwMTgtY2Fy/cy1zdXBlcmNhcnMt/Z2VybWFuLWNhcnMt/cG9yc2NoZS10aHVt/Ym5haWwuanBn" alt="Porsche Carrera GT">
+            <div class="car-info">
+                <h3 class="car-name">Porsche Carrera GT</h3>
+                <div class="price">₹15.00 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 5.7L Naturally Aspirated V10</li>
+                    <li>Power: 603 HP</li>
+                    <li>0-100 km/h: 3.9 sec</li>
+                    <li>Top Speed: 330 km/h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="brand-section">
+    <h2 class="brand-title">LAMBORGHINI</h2>
+        <div class="car-container">
+            <div class="car-card">
+                <img src="https://i.pinimg.com/736x/f1/9d/24/f19d2453d0606f5a54ad834321821f2d.jpg" alt="Lamborghini Huracan">
+                <div class="car-info">
+                    <h3 class="car-name">Lamborghini Huracan</h3>
+                    <div class="price"> ₹4.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 5.2L Naturally Aspirated V10</li>
+                        <li>Power: 631 HP</li>
+                        <li>0-100 km/h: 2.9 sec</li>
+                        <li>Top Speed: 350 km/h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="https://wallpapercave.com/wp/wp2646184.jpg" alt="Lamborghini Aventador">
+                <div class="car-info">
+                    <h3 class="car-name">Lamborghini Aventador</h3>
+                    <div class="price">₹5.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 6.5L Naturally Aspirated V12</li>
+                        <li>Power: 769 HP</li>
+                        <li>0-100 km/h: 2.8 sec</li>
+                        <li>Top Speed: 355 km/h</li>
+                    </ul>
+                </div>
+            </div>
+    <div class="car-card">
+            <img src="https://i.pinimg.com/736x/8a/8d/0e/8a8d0e3f7ed5e08ba66088a64dfbc6e3.jpg" alt="Lamborghini Revuelto">
+        <div class="car-info">
+            <h3 class="car-name">Lamborghini Revuelto</h3>
+            <div class="price">₹8.89 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 6.5L V12 Plug-in Hybrid</li>
+                    <li>Power: 1,015 HP Combined</li>
+                    <li>0-100 km/h: 2.5 sec</li>
+                    <li>Top Speed: 350 km/h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="brand-section">
+    <h2 class="brand-title">ASTON MARTIN</h2>
+    <div class="car-container">
+        <div class="car-card">
+            <img src="https://imgs.search.brave.com/YOCIxtxjx50jtQlwhvHJfIJ9Kq9y4uDLfPRd7bXwZ4o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0R4/OGJiTGNaSGJLNXk3/Mlk0ZGRqR1ouanBn" alt="Aston Martin Valkyrie">
+            <div class="car-info">
+                <h3 class="car-name">Aston Martin Valkyrie</h3>
+                <div class="price">₹30.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 6.5L Naturally Aspirated V12 Hybrid</li>
+                        <li>Power: 1,160 HP</li>
+                        <li>0-100 km/h: 2.5 sec</li>
+                        <li>Top Speed: 325 km/h</li>
+                    </ul>
+                </div>
+            </div>
+    <div class="car-card">
+        <img src="https://preview.redd.it/aston-martin-v12-vantage-am6-v0-tz7jdmks42mg1.jpg?width=1080&crop=smart&auto=webp&s=920ba75207787c20d0e90182c44ea3fcdfda6652" alt="Aston Martin V12 Vantage">
+            <div class="car-info">
+                <h3 class="car-name">Aston Martin V12 Vantage</h3>
+                    <div class="price">₹6.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 5.2L Twin-Turbo V12</li>
+                        <li>Power: 690 HP</li>
+                        <li>0-100 km/h: 3.5 sec</li>
+                        <li>Top Speed: 322 km/h</li>
+                    </ul>
+                </div>
+            </div>
+    <div class="car-card">
+        <img src="https://imgs.search.brave.com/l8-C0SqEWSH2k4LqxzBCjmGI0ZjJWzLnw4rAvSgzklQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdk/LmFlcGxjZG4uY29t/LzEwNTZ4NTk0L24v/Y3cvZWMvMTU4OTA1/L2RiMTItZXh0ZXJp/b3ItbGVmdC1zaWRl/LXZpZXctNy5wbmc_/aXNpZz0wJnE9ODAm/d209MQ" alt="Aston Martin DB12">
+            <div class="car-info">
+                <h3 class="car-name">Aston Martin DB12</h3>
+                <div class="price">₹4.59 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 4.0L Twin-Turbo V8</li>
+                    <li>Power: 671 HP</li>
+                    <li>0-100 km/h: 3.6 sec</li>
+                    <li>Top Speed: 325 km/h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="brand-section">
+    <h2 class="brand-title">AUDI</h2>
+    <div class="car-container">
+        <div class="car-card">
+            <img src="https://w0.peakpx.com/wallpaper/249/990/HD-wallpaper-audi-r8-building-cityscape-night-audi.jpg" alt="Audi R8">
+            <div class="car-info">
+                <h3 class="car-name">Audi R8</h3>
+                <div class="price"> ₹2.30 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 5.2L V10</li>
+                    <li>Power: 602 HP</li>
+                    <li>0-100 km/h: 3.2 sec</li>
+                    <li>Top Speed: 330 km/h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="car-card">
+            <img src="https://media.evkx.net/ehga/models/e-tron-gt/exterior/exteriors.webp" alt="Audi e-tron GT">
+            <div class="car-info">
+                <h3 class="car-name">Audi e-tron GT</h3>
+                <div class="price">₹2.50 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: Dual Electric Motors</li>
+                        <li>Power: 590 HP (637 HP Boost)</li>
+                        <li>0-100 km/h: 3.3 sec</li>
+                        <li>Top Speed: 245 km/h</li>
+                    </ul>
+                </div>
+            </div>
+        <div class="car-card">
+            <img src="https://imgs.search.brave.com/DFOsnY5Dxb3B-1nsetqWjDq-XDg9YjnCRq64Yw5N5nE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wYXJr/cGx1cy5pby9fbmV4/dC9pbWFnZT91cmw9/aHR0cHM6Ly9wYXJr/cGx1cy1ia3QtaW1n/LnBhcmtwbHVzLmlv/L3Byb2R1Y3Rpb24v/Y3Jhd2xlci9wdWJs/aWMvQ3Jhd2xlcjBi/NmY4ZGM4OTMwNjEx/ZWU4NDgyNjYzOTA4/NzllYWZiXzIwMjMx/MjA1MDYwNDI2NjUw/Nzk1LmpwZyZ3PTM4/NDAmcT03NQ" alt="Audi A6">
+            <div class="car-info">
+                <h3 class="car-name">Audi A6</h3>
+                <div class="price">₹0.75 Crore</div>
+                <ul class="specs">
+                    <li>Engine: 2.0L Turbocharged Inline-4</li>
+                    <li>Power: 245 HP</li>
+                    <li>0-100 km/h: 6.8 sec</li>
+                    <li>Top Speed: 250 km/h</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="brand-section">
+    <h2 class="brand-title">MCLAREN</h2>
+    <div class="car-container">
+        <div class="car-card">
+        <img src="https://imgs.search.brave.com/FTNQJkxq2qkOPmvepQRtrJI92sYr8xsRxRgF9YbWUpo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3VwZXJjYXJzLm5l/dC9ibG9nL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE2LzA0LzEw/OTkyNjQtMTUzNi5q/cGc" alt="McLaren P1">
+            <div class="car-info">
+            <h3 class="car-name">McLaren P1</h3>
+                <div class="price">₹20.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 3.8L Twin-Turbo V8 Hybrid</li>
+                        <li>Power: 903 HP</li>
+                        <li>0-100 km/h: 2.8 sec</li>
+                        <li>Top Speed: 350 km/h</li>
+                    </ul>
+                </div>
+            </div>
+        <div class="car-card">
+        <img src="https://imgs.search.brave.com/HXZL8qlOj0J_4zpOtj075yyf-_wbCS2BSjEKJ7HKlw0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXQuY29t/L3cvZnVsbC9kLzMv/Ny8xNzQ4NjkzLTI1/NjB4MTQ0MC1kZXNr/dG9wLWhkLW1jbGFy/ZW4tc2VubmEtd2Fs/bHBhcGVyLWltYWdl/LmpwZw"  alt="McLaren Senna">
+            <div class="car-info">
+                <h3 class="car-name">McLaren Senna</h3>
+                    <div class="price">₹12.00 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 4.0L Twin-Turbo V8</li>
+                        <li>Power: 789 HP</li>
+                        <li>0-100 km/h: 2.8 sec</li>
+                        <li>Top Speed: 335 km/h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="car-card">
+                <img src="https://imgs.search.brave.com/tli47OXcqlnBr_hzu2wrLjYyPaIKrA4JOmv3zK-bwLU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDEyOTMy/ODcwLmpwZw" alt="McLaren 750S">
+                <div class="car-info">
+                    <h3 class="car-name">McLaren 750S</h3>
+                    <div class="price">₹5.91 Crore</div>
+                    <ul class="specs">
+                        <li>Engine: 4.0L Twin-Turbo V8</li>
+                        <li>Power: 755 HP</li>
+                        <li>0-100 km/h: 2.8 sec</li>
+                        <li>Top Speed: 330 km/h</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="updates" id="updates">
+<h2>GET CAR UPDATES</h2>
+<p>Get the latest car launches, news and performance updates.</p>
+    <form class="update-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">SUBSCRIBE</button>
+    </form>
+</section>
+<footer>
+<h2>SUBSCRIBE TO NEWSLETTER</h2>
+<p class="stay-tuned">STAY TUNED</p>
+    <div class="social">
+        <a href="https://github.com/rajmaurya-91" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/raj-maurya-49875129b/" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-buttons">
+        <a href="#">TERMS & CONDITIONS</a>
+        <a href="#">LEGAL NOTICES</a>
+        <a href="#">LANGUAGE</a>
+        <a href="#">COOKIE POLICY</a>
+        <a href="#">PRIVACY POLICY</a>
+    </div>
+    <div class="copyright">© 2026 FAS-CAR. ALL RIGHTS RESERVED.</div>
+</footer>
+</body>
+</html>
